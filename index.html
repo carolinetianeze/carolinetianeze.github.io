@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Caroline Tianeze de Castro – Pharmacoepidemiologist & Health Data Scientist | PhD in Public Health | Real-World Evidence | R, Python, Stata" />
+  <title>Caroline Tianeze de Castro</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== RESET & TOKENS ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0f1e;
+      --surface:   #0f1629;
+      --card:      #141c35;
+      --border:    #1e2d52;
+      --accent:    #4f8ef7;
+      --accent2:   #7c5cbf;
+      --teal:      #38c9b0;
+      --text:      #e2e8f0;
+      --muted:     #8892a4;
+      --font:      'Inter', sans-serif;
+      --mono:      'JetBrains Mono', monospace;
+      --radius:    10px;
+      --transition: 0.25s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--teal); }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(10,15,30,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      padding: 0.45rem 1.1rem;
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      font-size: 0.82rem;
+      color: var(--accent) !important;
+      transition: all var(--transition);
+    }
+    .nav-cta:hover { background: var(--accent); color: var(--bg) !important; }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 7rem 10vw 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4rem;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-photo-wrap {
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .hero-photo {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 0 8px rgba(79,142,247,0.1), 0 24px 64px rgba(0,0,0,0.4);
+      display: block;
+    }
+
+    .hero-photo-ring {
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      border: 1px dashed rgba(79,142,247,0.3);
+      animation: spin 20s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner { flex-direction: column-reverse; align-items: flex-start; gap: 2rem; }
+      .hero-photo { width: 160px; height: 160px; }
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 40%, rgba(79,142,247,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 20% 60%, rgba(124,92,191,0.07) 0%, transparent 70%);
+    }
+
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(79,142,247,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,142,247,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-content { max-width: 620px; }
+
+    .hero-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: rgba(79,142,247,0.1);
+      border: 1px solid rgba(79,142,247,0.25);
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-greeting {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-name {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-name span {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--teal) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 580px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-item { display: flex; flex-direction: column; }
+
+    .stat-num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: var(--mono);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 0.25rem;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      padding: 0.7rem 1.6rem;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+    }
+    .btn-primary:hover { background: #6fa3ff; color: var(--bg); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(79,142,247,0.3); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* ===== SECTION BASE ===== */
+    section { padding: 6rem 10vw; }
+
+    .section-num {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-line {
+      width: 48px; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--teal));
+      border-radius: 2px;
+      margin-bottom: 3rem;
+    }
+
+    /* ===== ABOUT ===== */
+    #about { background: var(--surface); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      font-size: 0.97rem;
+      line-height: 1.85;
+    }
+
+    .about-text strong { color: var(--text); }
+
+    .about-highlights {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+
+    .highlight-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .highlight-card:hover { border-color: var(--accent); transform: translateX(4px); }
+
+    .highlight-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(79,142,247,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+
+    .highlight-card h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .highlight-card p { font-size: 0.8rem; color: var(--muted); margin: 0; }
+
+    /* ===== SKILLS ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-group {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: border-color var(--transition);
+    }
+    .skill-group:hover { border-color: var(--accent); }
+
+    .skill-group-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      background: rgba(79,142,247,0.08);
+      border: 1px solid rgba(79,142,247,0.2);
+      color: var(--text);
+    }
+
+    .tag.teal { background: rgba(56,201,176,0.08); border-color: rgba(56,201,176,0.2); }
+    .tag.purple { background: rgba(124,92,191,0.08); border-color: rgba(124,92,191,0.2); }
+
+    /* ===== EXPERIENCE ===== */
+    #experience { background: var(--surface); }
+
+    .timeline { position: relative; padding-left: 2rem; }
+
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+      border-radius: 1px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      padding-left: 1.5rem;
+    }
+
+    .timeline-dot {
+      position: absolute; left: -2.5rem; top: 0.35rem;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    .timeline-header { margin-bottom: 0.5rem; }
+
+    .timeline-role {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .timeline-org {
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .timeline-period {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    .timeline-body {
+      margin-top: 0.75rem;
+      padding: 1rem 1.2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      border-left: 3px solid var(--accent);
+    }
+
+    .timeline-body ul {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+
+    .timeline-body li {
+      font-size: 0.87rem;
+      color: var(--muted);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .timeline-body li::before {
+      content: '→';
+      position: absolute; left: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+    }
+
+    /* ===== PUBLICATIONS ===== */
+    .pub-controls {
+      display: flex; gap: 0.75rem; flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .pub-filter {
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: var(--font);
+    }
+    .pub-filter.active, .pub-filter:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(79,142,247,0.1);
+    }
+
+    .pub-search {
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-family: var(--font);
+      width: 240px;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    .pub-search:focus { border-color: var(--accent); }
+    .pub-search::placeholder { color: var(--muted); }
+
+    .pub-count {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex; align-items: center;
+    }
+
+    .pub-list { display: flex; flex-direction: column; gap: 1rem; }
+
+    .pub-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.3rem 1.5rem;
+      display: flex; gap: 1.2rem;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .pub-card:hover { border-color: var(--accent); transform: translateX(3px); }
+    .pub-card.hidden { display: none; }
+
+    .pub-num {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      min-width: 28px;
+      padding-top: 0.1rem;
+    }
+
+    .pub-body { flex: 1; }
+
+    .pub-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 0.35rem;
+    }
+
+    .pub-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      font-style: italic;
+    }
+
+    .pub-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+
+    .pub-badge {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    .badge-year { background: rgba(79,142,247,0.12); color: var(--accent); }
+    .badge-doi { background: rgba(56,201,176,0.12); color: var(--teal); border: 1px solid rgba(56,201,176,0.2); }
+    .badge-citations { background: rgba(124,92,191,0.12); color: #a78bfa; }
+    .badge-topic { background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid var(--border); }
+
+    /* ===== GITHUB ===== */
+    #github { background: var(--surface); }
+
+    .gh-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .gh-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.3rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .gh-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+    .gh-card-header { display: flex; align-items: center; gap: 0.6rem; }
+
+    .gh-icon { font-size: 1rem; }
+
+    .gh-name { font-size: 0.9rem; font-weight: 600; color: var(--accent); }
+
+    .gh-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    .gh-footer { display: flex; gap: 1rem; margin-top: auto; }
+
+    .gh-stat { font-size: 0.75rem; color: var(--muted); display: flex; align-items: center; gap: 0.3rem; }
+
+    .gh-lang {
+      font-size: 0.72rem; font-family: var(--mono);
+      padding: 0.2rem 0.6rem;
+      background: rgba(79,142,247,0.1);
+      border-radius: 4px;
+      color: var(--accent);
+    }
+
+    .gh-loading {
+      grid-column: 1/-1;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 2rem;
+    }
+
+    /* ===== CONTACT ===== */
+    #contact { text-align: center; }
+
+    .contact-desc {
+      max-width: 540px;
+      margin: 0 auto 3rem;
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.8;
+    }
+
+    .contact-links {
+      display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .contact-link {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.75rem 1.4rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all var(--transition);
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+
+    .contact-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    footer span { color: var(--accent); }
+
+    /* ===== EDUCATION ===== */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .edu-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.3rem;
+      transition: border-color var(--transition);
+    }
+    .edu-card:hover { border-color: var(--teal); }
+
+    .edu-degree { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .edu-inst { font-size: 0.85rem; color: var(--accent); margin-bottom: 0.25rem; }
+    .edu-period { font-size: 0.75rem; color: var(--muted); font-family: var(--mono); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav { padding: 1rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 5vw; }
+      #hero { padding: 6rem 5vw 3rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-stats { gap: 1.5rem; }
+      .pub-count { display: none; }
+    }
+
+    /* ===== CONGRESSES ===== */
+    .congress-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .congress-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.3rem 1.5rem;
+      display: flex; flex-direction: column; gap: 0.5rem;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .congress-card:hover { border-color: var(--teal); transform: translateY(-2px); }
+
+    .congress-year {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--teal);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    .congress-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .congress-event {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .congress-type {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      background: rgba(56,201,176,0.1);
+      border: 1px solid rgba(56,201,176,0.2);
+      color: var(--teal);
+      margin-top: 0.25rem;
+      width: fit-content;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate { animation: fadeUp 0.6s ease forwards; }
+    .delay-1 { animation-delay: 0.1s; opacity: 0; }
+    .delay-2 { animation-delay: 0.2s; opacity: 0; }
+    .delay-3 { animation-delay: 0.3s; opacity: 0; }
+    .delay-4 { animation-delay: 0.45s; opacity: 0; }
+    .delay-5 { animation-delay: 0.6s; opacity: 0; }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <div class="nav-logo">ct.dev</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#github">Projects</a></li>
+    <li><a href="#congresses">Congresses</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+  <div class="hero-content">
+    <div class="hero-tag animate delay-1">📍 Vitória da Conquista, Brazil · GMT-3</div>
+    <p class="hero-greeting animate delay-2">Hi, my name is</p>
+    <h1 class="hero-name animate delay-2">
+      Caroline <span>Tianeze</span><br/>de Castro.
+    </h1>
+    <p class="hero-subtitle animate delay-3">
+      Pharmacoepidemiologist &amp; Health Data Scientist
+    </p>
+    <p class="hero-desc animate delay-3">
+      PhD in Public Health with <strong>7+ years</strong> of experience in real-world evidence for pharmaceutical companies and regulatory bodies. Specialist in RWE study design, causal inference, and health technology assessment using R, Python, and Stata.
+    </p>
+    <div class="hero-stats animate delay-4">
+      <div class="stat-item">
+        <span class="stat-num">36</span>
+        <span class="stat-label">Peer-reviewed articles</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">400+</span>
+        <span class="stat-label">Citations</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">7+</span>
+        <span class="stat-label">Years in RWE</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">2×</span>
+        <span class="stat-label">IQVIA Bronze Award</span>
+      </div>
+    </div>
+    <div class="hero-actions animate delay-5">
+      <a href="#publications" class="btn btn-primary">View Publications</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div><!-- /hero-content -->
+
+  <div class="hero-photo-wrap animate delay-3">
+    <div class="hero-photo-ring"></div>
+    <img class="hero-photo" src="photo.jpg" alt="Caroline Tianeze de Castro" />
+  </div>
+
+  </div><!-- /hero-inner -->
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <span class="section-num">01. About</span>
+  <h2 class="section-title">About Me</h2>
+  <div class="section-line"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I am a <strong>Pharmacoepidemiologist and Health Data Scientist</strong> with a PhD in Public Health (Epidemiology) from Universidade Federal da Bahia (UFBA). Currently, I serve as a <strong>Postdoctoral Research Fellow</strong> at Hospital Israelita Albert Einstein, contributing to Brazil's National Health Survey (EDIS-Bio/PROADI-SUS), and as a <strong>RWE Consultant</strong> at Precision Data Engineering &amp; Data Science.
+      </p>
+      <p>
+        My research focuses on <strong>pharmacoepidemiology, health technology assessment (HTA), and biologic therapies</strong> — particularly for inflammatory bowel diseases, autoimmune conditions, and rare diseases. I have extensive experience designing RWE studies using administrative health databases such as DATASUS, with datasets covering <strong>10M+ patient records</strong> across Brazil's national health system.
+      </p>
+      <p>
+        I am a member of the International Society for Pharmacoepidemiology (ISPE) and the Brazilian Association of Collective Health (ABRASCO).
+      </p>
+      <p>
+        I have worked remotely with distributed international teams for 7+ years, with advanced English and native Portuguese. I am open to collaborations in pharmacoepidemiology, HTA, and health data science.
+      </p>
+    </div>
+    <div class="about-highlights">
+      <div class="highlight-card">
+        <div class="highlight-icon">🎓</div>
+        <div>
+          <h4>PhD in Public Health</h4>
+          <p>Epidemiology · UFBA, 2021–2025<br/>Thesis on biologic DMARD utilization for IBD in Brazil</p>
+        </div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🔬</div>
+        <div>
+          <h4>Postdoctoral Fellow</h4>
+          <p>Hospital Israelita Albert Einstein · 2026–Present<br/>National Health Survey (EDIS-Bio/PROADI-SUS)</p>
+        </div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">📊</div>
+        <div>
+          <h4>RWE &amp; HTA Expert</h4>
+          <p>IQVIA, Fiocruz/CIDACS, Precision Data Engineering<br/>Pharmaceutical companies &amp; regulatory bodies</p>
+        </div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🏆</div>
+        <div>
+          <h4>2× IQVIA Bronze Award</h4>
+          <p>IQVIA Impact Program<br/>High-impact HTA client deliverables</p>
+        </div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">✍️</div>
+        <div>
+          <h4>Peer Reviewer</h4>
+          <p>15+ international journals including Pharmacoepidemiology &amp; Drug Safety, PLoS ONE, Nutrition Reviews</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+  <span class="section-num">02. Skills &amp; Tools</span>
+  <h2 class="section-title">Expertise &amp; Stack</h2>
+  <div class="section-line"></div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Programming</div>
+      <div class="skill-tags">
+        <span class="tag">R</span>
+        <span class="tag">Python</span>
+        <span class="tag">Stata</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Statistical Methods</div>
+      <div class="skill-tags">
+        <span class="tag teal">Regression Modeling</span>
+        <span class="tag teal">Causal Inference</span>
+        <span class="tag teal">Survival Analysis</span>
+        <span class="tag teal">Spatial Analysis</span>
+        <span class="tag teal">Time Series</span>
+        <span class="tag teal">Machine Learning</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Real-World Evidence</div>
+      <div class="skill-tags">
+        <span class="tag purple">RWE Study Design</span>
+        <span class="tag purple">Protocol Development</span>
+        <span class="tag purple">DATASUS</span>
+        <span class="tag purple">Admin Health Databases</span>
+        <span class="tag purple">Pharmacovigilance</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">HTA / HEOR</div>
+      <div class="skill-tags">
+        <span class="tag">HTA Dossiers (CONITEC)</span>
+        <span class="tag">Price Dossiers (CMED)</span>
+        <span class="tag">Clinical Study Reports</span>
+        <span class="tag">Cost-Effectiveness</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Evidence Synthesis</div>
+      <div class="skill-tags">
+        <span class="tag teal">Systematic Reviews</span>
+        <span class="tag teal">Meta-analysis</span>
+        <span class="tag teal">Scoping Reviews</span>
+        <span class="tag teal">PRISMA</span>
+        <span class="tag teal">PROSPERO</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Scientific Writing</div>
+      <div class="skill-tags">
+        <span class="tag purple">Medical Writing</span>
+        <span class="tag purple">Peer Review</span>
+        <span class="tag purple">CSR Authoring</span>
+        <span class="tag purple">Statistical Analysis Plans</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience">
+  <span class="section-num">03. Experience</span>
+  <h2 class="section-title">Professional Experience</h2>
+  <div class="section-line"></div>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div class="timeline-role">Postdoctoral Research Fellow</div>
+        <div class="timeline-org">Hospital Israelita Albert Einstein</div>
+        <div class="timeline-period">May 2026 – Present · São Paulo, Brazil</div>
+      </div>
+      <div class="timeline-body">
+        <ul>
+          <li>Contributing to the National Health Survey (PNS) through the EDIS-Bio/PROADI-SUS project</li>
+          <li>Optimizing operational workflows for identifying and managing critical laboratory results (CBC and Creatinine)</li>
+          <li>Remote oversight for biological material collection processes, identifying inconsistencies and operational risks</li>
+          <li>Participating in technical discussions alongside the Ministry of Health and EDIS-Bio teams</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div class="timeline-role">RWE Consultant</div>
+        <div class="timeline-org">Precision Data Engineering &amp; Data Science</div>
+        <div class="timeline-period">June 2025 – Present · São Paulo, Brazil (Remote)</div>
+      </div>
+      <div class="timeline-body">
+        <ul>
+          <li>Developed 6 RWE protocols and 7 TLF packages for pharmaceutical clients across rare diseases and autoimmune conditions</li>
+          <li>Led regression analysis and statistical modeling on DATASUS datasets covering 2M+ patient records</li>
+          <li>Authored 4 Clinical Study Reports (CSR) in Brazil and Latin America</li>
+          <li>Reviewed 6 statistical analysis plans and validated 4 administrative databases with zero critical findings</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div class="timeline-role">Epidemiology Research Associate I</div>
+        <div class="timeline-org">IQVIA</div>
+        <div class="timeline-period">Feb 2025 – May 2025 · São Paulo, Brazil</div>
+      </div>
+      <div class="timeline-body">
+        <ul>
+          <li>Developed 3 RWE study protocols and TLF packages for oncology, immunology, and rare diseases</li>
+          <li>Wrote 3 peer-reviewed articles for scientific journals (average IF 3.0)</li>
+          <li>Prepared 4 conference presentations and posters for ISPE, ISPOR, and regional conferences</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div class="timeline-role">HTA/HEOR Analyst</div>
+        <div class="timeline-org">IQVIA</div>
+        <div class="timeline-period">Apr 2024 – Feb 2025 · São Paulo, Brazil</div>
+      </div>
+      <div class="timeline-body">
+        <ul>
+          <li>Led development of 8 HTA dossiers for CONITEC, facilitating incorporation of high-cost therapies into SUS</li>
+          <li>Authored 5 Price Information Dossiers for CMED with evidence-based therapeutic gain classification</li>
+          <li>Assessed 13 health interventions using DATASUS real-world data for reimbursement decisions</li>
+          <li>Directed 2 scoping reviews, 1 systematic review, and 1 meta-analysis for ANVISA and CONITEC submissions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div class="timeline-role">Researcher</div>
+        <div class="timeline-org">CIDACS / Fiocruz Bahia</div>
+        <div class="timeline-period">Jan 2022 – Oct 2025 · Salvador, Brazil (Remote)</div>
+      </div>
+      <div class="timeline-body">
+        <ul>
+          <li>Designed 3 statistical models using DATASUS administrative data covering 2M patients</li>
+          <li>Conducted pharmacoepidemiology analyses on medication use during pregnancy and autoimmune diseases</li>
+          <li>Led HTA evaluations for high-cost medicines, informing policy decisions by Brazil's Ministry of Health</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div class="timeline-role">Researcher (Pharmacoepidemiology)</div>
+        <div class="timeline-org">PECS – ISC/UFBA</div>
+        <div class="timeline-period">Jan 2023 – Apr 2024</div>
+      </div>
+      <div class="timeline-body">
+        <ul>
+          <li>Conducted data analysis and scientific writing for 4 pharmacoepidemiology studies on medication safety</li>
+          <li>Published 2 impact evaluation studies contributing to evidence-based policy for Brazil's SUS</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div class="timeline-role">PhD Researcher (CAPES Scholarship)</div>
+        <div class="timeline-org">Universidade Federal da Bahia – UFBA</div>
+        <div class="timeline-period">Oct 2021 – Apr 2024</div>
+      </div>
+      <div class="timeline-body">
+        <ul>
+          <li>Analyzed biologic DMARD utilization for IBD using nationwide cohort of 200K+ patients and 5M+ prescriptions (2008–2022)</li>
+          <li>Investigated treatment patterns in pregnant women with IBD, informing Brazilian clinical guidelines</li>
+          <li>Assessed geographic and socioeconomic disparities in biologic therapy access across Brazil's 27 states</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div class="timeline-role">Statistics &amp; Data Analysis Preceptor</div>
+        <div class="timeline-org">Independent Consultant</div>
+        <div class="timeline-period">Feb 2021 – Apr 2024</div>
+      </div>
+      <div class="timeline-body">
+        <ul>
+          <li>Provided statistical consulting to 5 post-graduate researchers (R, Stata), resulting in 7 peer-reviewed publications and 5 thesis completions</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Education -->
+  <div style="margin-top: 4rem;">
+    <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--muted); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em;">Education</h3>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-degree">PhD in Public Health (Epidemiology)</div>
+        <div class="edu-inst">Universidade Federal da Bahia – UFBA</div>
+        <div class="edu-period">2021 – 2025</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">MSc in Public Health (Epidemiology)</div>
+        <div class="edu-inst">Universidade Federal da Bahia – UFBA</div>
+        <div class="edu-period">2019 – 2021</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Postdoctoral Fellowship</div>
+        <div class="edu-inst">Hospital Israelita Albert Einstein</div>
+        <div class="edu-period">2026 – Present</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">MBA in Data Science &amp; Analytics</div>
+        <div class="edu-inst">USP / Esalq</div>
+        <div class="edu-period">2024 – 2026</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Specialization in Clinical &amp; Hospital Pharmacy</div>
+        <div class="edu-inst">UNINTER</div>
+        <div class="edu-period">2018 – 2019</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Specialization in Health Audit</div>
+        <div class="edu-inst">UNINTER</div>
+        <div class="edu-period">2018 – 2019</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Bachelor's in Pharmacy</div>
+        <div class="edu-inst">Universidade Federal da Bahia – UFBA</div>
+        <div class="edu-period">2010 – 2017</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PUBLICATIONS ===== -->
+<section id="publications">
+  <span class="section-num">04. Publications</span>
+  <h2 class="section-title">Peer-Reviewed Publications</h2>
+  <div class="section-line"></div>
+
+  <div class="pub-controls">
+    <input type="text" class="pub-search" id="pubSearch" placeholder="🔍  Search publications…" />
+    <button class="pub-filter active" data-topic="all">All</button>
+    <button class="pub-filter" data-topic="IBD">IBD / Biologics</button>
+    <button class="pub-filter" data-topic="pregnancy">Pregnancy</button>
+    <button class="pub-filter" data-topic="review">Reviews &amp; Meta-analyses</button>
+    <button class="pub-filter" data-topic="HIV">HIV</button>
+    <button class="pub-filter" data-topic="COVID">COVID-19</button>
+    <span class="pub-count" id="pubCount">36 publications</span>
+  </div>
+
+  <div class="pub-list" id="pubList">
+
+    <div class="pub-card" data-topic="IBD">
+      <div class="pub-num">36</div>
+      <div class="pub-body">
+        <div class="pub-title">Comparative Analysis of the Average Recommendation Time for the Incorporation of Biological Drugs for Cancer and Rheumatoid Arthritis</div>
+        <div class="pub-meta">Natividade M, Soares Lisboa E, Aragão E, <strong>de Castro C</strong>, et al. · Journal of Multidisciplinary Healthcare, 2026</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2026</span>
+          <span class="pub-badge badge-topic">IBD / Biologics</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.2147/jmdh.s532154" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="IBD">
+      <div class="pub-num">35</div>
+      <div class="pub-body">
+        <div class="pub-title">Nexus: A Deterministic Linkage Framework for Constructing Longitudinal Real-World Data in Brazil's Public Health System</div>
+        <div class="pub-meta">Oliveira JCB, Sarmento TTR, Rocha DMU, <strong>de Castro CT</strong>, et al. · Pharmacoepidemiology and Drug Safety, 2026</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2026</span>
+          <span class="pub-badge badge-topic">RWE · Methods</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.1002/pds.70391" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="other">
+      <div class="pub-num">34</div>
+      <div class="pub-body">
+        <div class="pub-title">Potential protective effect of dental treatment among subgroups of critically ill ventilated patients: a retrospective survival analysis</div>
+        <div class="pub-meta">Garcia FM, <strong>de Castro CT</strong>, Braga RVS, et al. · Critical Care Science, 2026</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2026</span>
+          <span class="pub-badge badge-topic">Critical Care</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.62675/2965-2774.20260305" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="IBD">
+      <div class="pub-num">33</div>
+      <div class="pub-body">
+        <div class="pub-title">Geographic and Temporal Patterns in Biologic Prescriptions for Inflammatory Bowel Diseases in the Public Healthcare System in Brazil: An Ecological Study</div>
+        <div class="pub-meta"><strong>de Castro CT</strong>, dos Santos Natividade M, Pereira M, et al. · Pharmacoepidemiology and Drug Safety, 2025</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2025</span>
+          <span class="pub-badge badge-topic">IBD / Biologics</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.1002/pds.70114" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="IBD review">
+      <div class="pub-num">32</div>
+      <div class="pub-body">
+        <div class="pub-title">Global prevalence of biologic drugs use in inflammatory bowel diseases: a systematic review and meta-analysis</div>
+        <div class="pub-meta"><strong>Tianeze de Castro C</strong>, da Silva Oliveira D, Freire de Melo F, et al. · Scandinavian Journal of Gastroenterology, 2025</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2025</span>
+          <span class="pub-badge badge-topic">IBD / Biologics</span>
+          <span class="pub-badge badge-topic">review</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.1080/00365521.2025.2491013" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="COVID">
+      <div class="pub-num">31</div>
+      <div class="pub-body">
+        <div class="pub-title">Prevalence of Adverse Events Reported Following the First Dose of COVID-19 Vaccines in Bahia State, Brazil, from 2021 to 2022</div>
+        <div class="pub-meta">Saavedra RC, Paixão ES, Ichihara MY, <strong>de Castro CT</strong>, et al. · Vaccines, 2025</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2025</span>
+          <span class="pub-badge badge-topic">COVID-19</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.3390/vaccines13020161" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="COVID other">
+      <div class="pub-num">30</div>
+      <div class="pub-body">
+        <div class="pub-title">Prognostic significance of cytokine dysregulation in critically ill COVID-19 patients</div>
+        <div class="pub-meta">Lemos FFB, Lopes LW, <strong>de Castro CT</strong>, et al. · Cytokine, 2025</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2025</span>
+          <span class="pub-badge badge-topic">COVID-19</span>
+          <span class="pub-badge badge-citations">1 citation</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.1016/j.cyto.2025.156867" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="HIV COVID">
+      <div class="pub-num">29</div>
+      <div class="pub-body">
+        <div class="pub-title">COVID-19 Vaccine Acceptance and Hesitancy among People Living with HIV: Review and Meta-Analysis</div>
+        <div class="pub-meta">Pereira M, Santos Aleluia IR, <strong>de Castro CT</strong>, et al. · AIDS and Behavior, 2024</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2024</span>
+          <span class="pub-badge badge-topic">HIV · COVID-19</span>
+          <span class="pub-badge badge-citations">9 citations</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.1007/s10461-024-04351-w" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="other">
+      <div class="pub-num">28</div>
+      <div class="pub-body">
+        <div class="pub-title">Prevalence and associated factors of diabetic retinopathy in Latin American countries: a scoping review</div>
+        <div class="pub-meta">Machado JS, Brandão MN, <strong>Castro CT</strong>, et al. · Revista Brasileira de Oftalmologia, 2024</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2024</span>
+          <span class="pub-badge badge-topic">review</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.37039/1982.8551.20240034" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="other review">
+      <div class="pub-num">27</div>
+      <div class="pub-body">
+        <div class="pub-title">Prevalence of errors in the preparation and administration of intravenous drugs in adults: Meta-analysis with meta-regression</div>
+        <div class="pub-meta">Figueredo IB, <strong>Castro CT</strong>, Santos DB, et al. · Research, Society and Development, 2024</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2024</span>
+          <span class="pub-badge badge-topic">review</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.33448/rsdv13i1.44834" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="pregnancy">
+      <div class="pub-num">26</div>
+      <div class="pub-body">
+        <div class="pub-title">Racial and ethnic disparities in premature births among pregnant women in the NISAMI cohort, Brazil</div>
+        <div class="pub-meta">Oliveira KA, <strong>Castro CT</strong>, Pereira M, et al. · Ciência &amp; Saúde Coletiva, 2024</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2024</span>
+          <span class="pub-badge badge-topic">Pregnancy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="pregnancy">
+      <div class="pub-num">25</div>
+      <div class="pub-body">
+        <div class="pub-title">Racial Disparities in Medication Use During Pregnancy: Results from the NISAMI Cohort</div>
+        <div class="pub-meta"><strong>Castro C</strong>, Leal L, Ramos D, et al. · Journal of Multidisciplinary Healthcare, 2024</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2024</span>
+          <span class="pub-badge badge-topic">Pregnancy</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.2147/jmdh.s455378" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="review other">
+      <div class="pub-num">24</div>
+      <div class="pub-body">
+        <div class="pub-title">Stool Antigen Test for Helicobacter Pylori Infection in Adults</div>
+        <div class="pub-meta">Silva Luz M, <strong>Tianeze de Castro C</strong>, Bueno Lemos FF, et al. · Journal of Clinical Gastroenterology, 2024</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2024</span>
+          <span class="pub-badge badge-topic">review</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.1097/mcg.0000000000002102" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="review other">
+      <div class="pub-num">23</div>
+      <div class="pub-body">
+        <div class="pub-title">Urea breath test for Helicobacter pylori infection in adult dyspeptic patients: A meta-analysis of diagnostic test accuracy</div>
+        <div class="pub-meta">Lemos FFB, <strong>Castro CT</strong>, Silva Luz M, et al. · World Journal of Gastroenterology, 2024</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2024</span>
+          <span class="pub-badge badge-topic">review</span>
+          <span class="pub-badge badge-citations">7 citations</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.3748/wjg.v30.i6.579" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="HIV review">
+      <div class="pub-num">22</div>
+      <div class="pub-body">
+        <div class="pub-title">Demand creation and retention strategies for oral pre-exposure prophylaxis for HIV prevention among men who have sex with men and transgender women: a systematic review and meta-analysis</div>
+        <div class="pub-meta">Guimarães NS, Magno L, <strong>de Castro CT</strong>, et al. · BMC Infectious Diseases, 2023</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2023</span>
+          <span class="pub-badge badge-topic">HIV</span>
+          <span class="pub-badge badge-citations">4 citations</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.1186/s12879-023-08693-z" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="HIV review">
+      <div class="pub-num">21</div>
+      <div class="pub-body">
+        <div class="pub-title">Efeitos adversos da Profilaxia Pré-Exposição oral diária em homens que fazem sexo com homens e mulheres trans: revisão sistemática e metanálise</div>
+        <div class="pub-meta">Pereira M, <strong>Castro CT</strong>, Magno L, et al. · Cadernos de Saúde Pública, 2023</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2023</span>
+          <span class="pub-badge badge-topic">HIV</span>
+          <span class="pub-badge badge-topic">review</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="review other">
+      <div class="pub-num">20</div>
+      <div class="pub-body">
+        <div class="pub-title">Effectiveness of H. pylori eradication in the treatment of early-stage gastric mucosa-associated lymphoid tissue lymphoma: An up-to-date meta-analysis</div>
+        <div class="pub-meta">Lemos FFB, <strong>Castro CT</strong>, Calmon MS, et al. · World Journal of Gastroenterology, 2023</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2023</span>
+          <span class="pub-badge badge-topic">review</span>
+          <span class="pub-badge badge-citations">25 citations</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.3748/wjg.v29.i14.2202" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="review other">
+      <div class="pub-num">19</div>
+      <div class="pub-body">
+        <div class="pub-title">Melatonin for sleep disorders in people with autism: Systematic review and meta-analysis</div>
+        <div class="pub-meta">Nogueira HA, <strong>de Castro CT</strong>, da Silva DCG, Pereira M. · Progress in Neuro-Psychopharmacology &amp; Biological Psychiatry, 2023</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2023</span>
+          <span class="pub-badge badge-topic">review</span>
+          <span class="pub-badge badge-citations">39 citations</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.1016/j.pnpbp.2022.110695" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="review other">
+      <div class="pub-num">18</div>
+      <div class="pub-body">
+        <div class="pub-title">Self-Medication Associated With Toothache: A Systematic Literature Review</div>
+        <div class="pub-meta">Figueiredo MS, Nepomuceno AF, <strong>Castro CT</strong>, et al. · Revista Ciência Plural, 2023</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2023</span>
+          <span class="pub-badge badge-topic">review</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.21680/2446-7286.2023v9n3id33232" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="review other">
+      <div class="pub-num">17</div>
+      <div class="pub-body">
+        <div class="pub-title">Weight regain after bariatric surgery: A systematic review and meta-analysis of observational studies</div>
+        <div class="pub-meta">Reis MG, Guimarães GL, <strong>Tianeze de Castro C</strong>, et al. · Obesity Medicine, 2023</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2023</span>
+          <span class="pub-badge badge-topic">review</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.1016/j.obmed.2023.100528" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="IBD review">
+      <div class="pub-num">16</div>
+      <div class="pub-body">
+        <div class="pub-title">Real-world effectiveness of biological therapy in patients with rheumatoid arthritis: systematic review and meta-analysis</div>
+        <div class="pub-meta"><strong>Castro CT</strong>, Queiroz MJ, Albuquerque FC, et al. · Frontiers in Pharmacology, 2022</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2022</span>
+          <span class="pub-badge badge-topic">IBD / Biologics</span>
+          <span class="pub-badge badge-citations">17 citations</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.3389/fphar.2022.927179" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="IBD review">
+      <div class="pub-num">15</div>
+      <div class="pub-body">
+        <div class="pub-title">Safety of Biological Therapy in Patients with Rheumatoid Arthritis in Administrative Health Databases: A Systematic Review and Meta-Analysis</div>
+        <div class="pub-meta">Queiroz MJ, <strong>Castro CT</strong>, Albuquerque FC, et al. · Frontiers in Pharmacology, 2022</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2022</span>
+          <span class="pub-badge badge-topic">IBD / Biologics</span>
+          <span class="pub-badge badge-citations">10 citations</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.3389/fphar.2022.928471" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="pregnancy">
+      <div class="pub-num">14</div>
+      <div class="pub-body">
+        <div class="pub-title">Association between paracetamol use during pregnancy and perinatal outcomes: Prospective NISAMI cohort</div>
+        <div class="pub-meta"><strong>de Castro CT</strong>, Pereira M, dos Santos DB. · PLoS ONE, 2022</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2022</span>
+          <span class="pub-badge badge-topic">Pregnancy</span>
+          <span class="pub-badge badge-citations">15 citations</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.1371/journal.pone.0267270" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="pregnancy review">
+      <div class="pub-num">13</div>
+      <div class="pub-body">
+        <div class="pub-title">Effect of Acetaminophen use during pregnancy on adverse pregnancy outcomes: a systematic review and meta-analysis</div>
+        <div class="pub-meta"><strong>Castro CT</strong>, Gama RS, Pereira M, et al. · Expert Opinion on Drug Safety, 2022</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2022</span>
+          <span class="pub-badge badge-topic">Pregnancy</span>
+          <span class="pub-badge badge-citations">12 citations</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="HIV review">
+      <div class="pub-num">12</div>
+      <div class="pub-body">
+        <div class="pub-title">HIV Testing Strategies, Types of Tests, and Uptake by Men Who have Sex with Men and Transgender Women: A Systematic Review and Meta-analysis</div>
+        <div class="pub-meta">Magno L, Pereira M, <strong>Castro CT</strong>, et al. · AIDS and Behavior, 2022</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2022</span>
+          <span class="pub-badge badge-topic">HIV</span>
+          <span class="pub-badge badge-topic">review</span>
+          <span class="pub-badge badge-citations">9 citations</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="other review">
+      <div class="pub-num">11</div>
+      <div class="pub-body">
+        <div class="pub-title">Prevention of hypothermia in newborn submitted to surgical procedures: an integrative review</div>
+        <div class="pub-meta">Martins LA, Camargo CL, <strong>Castro CT</strong>, et al. · Revista Brasileira de Enfermagem, 2022</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2022</span>
+          <span class="pub-badge badge-topic">review</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.1590/0034-7167-2020-0940" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="review other">
+      <div class="pub-num">10</div>
+      <div class="pub-body">
+        <div class="pub-title">Benefits of probiotic use on COVID-19: A systematic review and meta-analysis</div>
+        <div class="pub-meta">Neris Almeida Viana S, <strong>Tianeze de Castro C</strong>, et al. · Critical Reviews in Food Science and Nutrition, 2022</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2022</span>
+          <span class="pub-badge badge-topic">COVID-19</span>
+          <span class="pub-badge badge-citations">14 citations</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.1080/10408398.2022.2128713" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="review other">
+      <div class="pub-num">9</div>
+      <div class="pub-body">
+        <div class="pub-title">Effect of a gluten-free diet on bone mineral density in children and adolescents with celiac disease: Systematic review and meta-analysis</div>
+        <div class="pub-meta">Oliveira DDCC, <strong>de Castro CT</strong>, Pereira M, et al. · Critical Reviews in Food Science and Nutrition, 2022</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2022</span>
+          <span class="pub-badge badge-topic">review</span>
+          <span class="pub-badge badge-citations">8 citations</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.1080/10408398.2022.2153103" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="pregnancy review">
+      <div class="pub-num">8</div>
+      <div class="pub-body">
+        <div class="pub-title">Antidepressant use during pregnancy and gestational diabetes: a systematic review</div>
+        <div class="pub-meta">Castro BT, Azevedo AO, <strong>Castro CT</strong>, et al. · Research, Society and Development, 2022</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2022</span>
+          <span class="pub-badge badge-topic">Pregnancy</span>
+          <span class="pub-badge badge-topic">review</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.33448/rsdv11i2.26278" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="other review">
+      <div class="pub-num">7</div>
+      <div class="pub-body">
+        <div class="pub-title">Use of recombinant proteins in the diagnosis of sexually transmitted infections: a systematic review and meta-analysis</div>
+        <div class="pub-meta">Silva LC, <strong>Castro CT</strong>, et al. · Research, Society and Development, 2022</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2022</span>
+          <span class="pub-badge badge-topic">review</span>
+          <a class="pub-badge badge-doi" href="https://doi.org/10.33448/rsdv11i10.32970" target="_blank">DOI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="other">
+      <div class="pub-num">6</div>
+      <div class="pub-body">
+        <div class="pub-title">Análise do perfil de anti-inflamatórios não esteroides utilizados em idosos e consequências associadas: uma revisão integrativa</div>
+        <div class="pub-meta">Oliveira DS, Guimaraes IR, <strong>Castro CT</strong>, et al. · Revista Saúde.com, 2022</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2022</span>
+          <span class="pub-badge badge-topic">review</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="other">
+      <div class="pub-num">5</div>
+      <div class="pub-body">
+        <div class="pub-title">Body Image and Associated Factors Among Quilombola and non-Quilombola Adolescents in a Semi-Arid Rural Area in Bahia, Brazil</div>
+        <div class="pub-meta"><strong>Castro CT</strong>, Teixeira CSS, Cairo SMC, et al. · Vulnerable Children and Youth Studies, 2021</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2021</span>
+          <span class="pub-badge badge-topic">Epidemiology</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="COVID review">
+      <div class="pub-num">4</div>
+      <div class="pub-body">
+        <div class="pub-title">Clinical overview for pediatric population with SARS-CoV-2 and care: review</div>
+        <div class="pub-meta">Martins LA, Santos DV, <strong>Castro CT</strong>, et al. · Revista Gaúcha de Enfermagem, 2021</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2021</span>
+          <span class="pub-badge badge-topic">COVID-19</span>
+          <span class="pub-badge badge-topic">review</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="pregnancy review">
+      <div class="pub-num">3</div>
+      <div class="pub-body">
+        <div class="pub-title">Vitamin D deficiency and anemia in pregnant women: systematic review and meta-analysis</div>
+        <div class="pub-meta">Lima MS, Pereira M, <strong>Castro CT</strong>, Santos DB. · Nutrition Reviews, 2021</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2021</span>
+          <span class="pub-badge badge-topic">Pregnancy</span>
+          <span class="pub-badge badge-topic">review</span>
+          <span class="pub-badge badge-citations">17 citations</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="pregnancy">
+      <div class="pub-num">2</div>
+      <div class="pub-body">
+        <div class="pub-title">Drug use according to risk classification and associated factors among pregnant women: results from NISAMI cohort</div>
+        <div class="pub-meta">Costa DB, <strong>Castro CT</strong>, Gama RS, Santos DB. · Research, Society and Development, 2020</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2020</span>
+          <span class="pub-badge badge-topic">Pregnancy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card" data-topic="other">
+      <div class="pub-num">1</div>
+      <div class="pub-body">
+        <div class="pub-title">Estimated glomerular filtration rate and drug dose adjustment in patients in an intensive care unit in Brazil</div>
+        <div class="pub-meta">Camargo MS, Mistro S, Oliveira MGG, <strong>Castro CT</strong>, et al. · Brazilian Journal of Pharmaceutical Sciences, 2020</div>
+        <div class="pub-tags">
+          <span class="pub-badge badge-year">2020</span>
+          <span class="pub-badge badge-topic">Critical Care</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /pub-list -->
+
+  <div style="text-align:center; margin-top: 2rem;">
+    <a href="https://scholar.google.com/citations?user=sUeX4VIAAAAJ&hl=en" target="_blank" class="btn btn-outline">
+      View all on Google Scholar ↗
+    </a>
+  </div>
+</section>
+
+<!-- ===== GITHUB ===== -->
+<section id="github">
+  <span class="section-num">05. Projects</span>
+  <h2 class="section-title">GitHub Portfolio</h2>
+  <div class="section-line"></div>
+  <div class="gh-grid" id="ghGrid">
+    <p class="gh-loading">Loading repositories from GitHub…</p>
+  </div>
+  <div style="text-align:center; margin-top: 2rem;">
+    <a href="https://github.com/carolinetianeze" target="_blank" class="btn btn-outline">View all on GitHub ↗</a>
+  </div>
+</section>
+
+<!-- ===== CONGRESSES ===== -->
+<section id="congresses">
+  <span class="section-num">06. Congresses</span>
+  <h2 class="section-title">Conference Participations</h2>
+  <div class="section-line"></div>
+  <div class="congress-grid">
+
+    <div class="congress-card">
+      <span class="congress-year">2025</span>
+      <div class="congress-title">The social and economic values of paracetamol in the health system</div>
+      <div class="congress-event">17° CBDor — Congresso Brasileiro de Dor · São Paulo, Brazil</div>
+      <span class="congress-type">Poster Presentation</span>
+    </div>
+
+    <div class="congress-card">
+      <span class="congress-year">2024</span>
+      <div class="congress-title">Biologic drugs use in inflammatory bowel diseases: a systematic review and meta-analysis</div>
+      <div class="congress-event">8th International Symposium on Immunobiologicals · Brazil</div>
+      <span class="congress-type">Poster Presentation</span>
+    </div>
+
+    <div class="congress-card">
+      <span class="congress-year">2024</span>
+      <div class="congress-title">Socioeconomic conditions effects on biological prescriptions for inflammatory bowel disease in Brazil</div>
+      <div class="congress-event">8th International Symposium on Immunobiologicals · Brazil</div>
+      <span class="congress-type">Poster Presentation</span>
+    </div>
+
+    <div class="congress-card">
+      <span class="congress-year">2024</span>
+      <div class="congress-title">Spatial-temporal patterns in biologic prescriptions for inflammatory bowel diseases in the public healthcare system in Brazil</div>
+      <div class="congress-event">8th International Symposium on Immunobiologicals · Brazil</div>
+      <span class="congress-type">Poster Presentation</span>
+    </div>
+
+    <div class="congress-card">
+      <span class="congress-year">2023</span>
+      <div class="congress-title">Use of biological drugs for inflammatory bowel disease in the Brazilian Northeast region (2008–2021)</div>
+      <div class="congress-event">7th International Symposium on Immunobiologicals · Brazil</div>
+      <span class="congress-type">Poster Presentation</span>
+    </div>
+
+    <div class="congress-card">
+      <span class="congress-year">2022</span>
+      <div class="congress-title">Real-World Effectiveness of Biological Therapy in Patients with Rheumatoid Arthritis: A Systematic Review and Meta-Analysis</div>
+      <div class="congress-event">2nd Annual African Regional Interest Group Meeting (ISPE) · International</div>
+      <span class="congress-type">Conference Presentation</span>
+    </div>
+
+    <div class="congress-card">
+      <span class="congress-year">2022</span>
+      <div class="congress-title">Racial Disparities in Medication Use During Pregnancy: Results From the NISAMI Cohort</div>
+      <div class="congress-event">2nd Annual African Regional Interest Group Meeting (ISPE) · International</div>
+      <span class="congress-type">Poster Presentation</span>
+    </div>
+
+    <div class="congress-card">
+      <span class="congress-year">2021</span>
+      <div class="congress-title">Comparative safety of TNF-alpha inhibitors in patients with rheumatoid arthritis in administrative health databases: A systematic review and meta-analysis</div>
+      <div class="congress-event">37th ICPE — International Conference on Pharmacoepidemiology &amp; Therapeutic Risk Management (Virtual)</div>
+      <span class="congress-type">Abstract Published · Pharmacoepidemiology &amp; Drug Safety</span>
+    </div>
+
+    <div class="congress-card">
+      <span class="congress-year">2021</span>
+      <div class="congress-title">Prevalência de HIV e status sorológico desconhecido em populações-chave: metanálise</div>
+      <div class="congress-event">11º Congresso Brasileiro de Epidemiologia · Fortaleza, Brazil</div>
+      <span class="congress-type">Poster Presentation</span>
+    </div>
+
+    <div class="congress-card">
+      <span class="congress-year">2021</span>
+      <div class="congress-title">Uso de paracetamol durante a gestação e desfechos perinatais na coorte NISAMI</div>
+      <div class="congress-event">11º Congresso Brasileiro de Epidemiologia · Fortaleza, Brazil</div>
+      <span class="congress-type">Poster Presentation</span>
+    </div>
+
+    <div class="congress-card">
+      <span class="congress-year">2021</span>
+      <div class="congress-title">Uso de medicamentos segundo critérios de risco durante a gestação e fatores associados</div>
+      <div class="congress-event">11º Congresso Brasileiro de Epidemiologia · Fortaleza, Brazil</div>
+      <span class="congress-type">Poster Presentation</span>
+    </div>
+
+    <div class="congress-card">
+      <span class="congress-year">2021</span>
+      <div class="congress-title">12º Fórum Latino Americano de Biossimilares</div>
+      <div class="congress-event">Latin American Biosimilars Forum · International</div>
+      <span class="congress-type">Participant</span>
+    </div>
+
+    <div class="congress-card">
+      <span class="congress-year">2020</span>
+      <div class="congress-title">Drug Use During Pregnancy According Risk Classification and Associated Factors</div>
+      <div class="congress-event">36th ICPE — International Conference on Pharmacoepidemiology &amp; Therapeutic Risk Management</div>
+      <span class="congress-type">Poster Presentation</span>
+    </div>
+
+    <div class="congress-card">
+      <span class="congress-year">2016</span>
+      <div class="congress-title">Uso de enoxaparina em pacientes com Insuficiência Renal em uma Unidade de Terapia Intensiva</div>
+      <div class="congress-event">IV Fórum Brasileiro sobre Assistência Farmacêutica e Farmacoeconomia</div>
+      <span class="congress-type">Poster Presentation</span>
+    </div>
+
+    <div class="congress-card">
+      <span class="congress-year">2016</span>
+      <div class="congress-title">Ajuste de dose de antimicrobianos em pacientes idosos com insuficiência renal em UTI</div>
+      <div class="congress-event">IV Fórum Brasileiro sobre Assistência Farmacêutica e Farmacoeconomia</div>
+      <span class="congress-type">Poster Presentation</span>
+    </div>
+
+    <div class="congress-card">
+      <span class="congress-year">2016</span>
+      <div class="congress-title">Diferenças na indicação de ajuste de dose quando utilizadas as equações de CG e MDRD em pacientes com insuficiência renal na UTI</div>
+      <div class="congress-event">IV Fórum Brasileiro sobre Assistência Farmacêutica e Farmacoeconomia</div>
+      <span class="congress-type">Poster Presentation</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <span class="section-num">07. Contact</span>
+  <h2 class="section-title">Let's Connect</h2>
+  <div class="section-line" style="margin: 0 auto 2rem;"></div>
+
+  <p class="contact-desc">
+    I am currently a Postdoctoral Fellow at Hospital Israelita Albert Einstein and open to collaborations in pharmacoepidemiology, real-world evidence, health technology assessment, and health data science. Feel free to reach out!
+  </p>
+
+  <div class="contact-links">
+
+    <a href="mailto:carolinetianeze@gmail.com" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      carolinetianeze@gmail.com
+    </a>
+
+    <a href="https://www.linkedin.com/in/carolinetianeze-de-castro" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+
+    <a href="https://github.com/carolinetianeze" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      GitHub
+    </a>
+
+    <a href="https://orcid.org/0000-0002-9445-8842" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm-1.56 17.28H8.88V9.6h1.56v7.68zm-.78-8.76a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8zm6.12 8.76h-1.56v-3.84c0-1.44-.6-1.92-1.44-1.92-.6 0-1.08.36-1.32.84v4.92H11.1V9.6h1.32v.84c.36-.6 1.08-.96 1.92-.96 1.56 0 2.4.96 2.4 2.88v4.92z"/></svg>
+      ORCID
+    </a>
+
+    <a href="https://scholar.google.com/citations?user=sUeX4VIAAAAJ&hl=en" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5 12 0z"/></svg>
+      Google Scholar
+    </a>
+
+    <a href="https://lattes.cnpq.br/9295760352039002" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Lattes CV
+    </a>
+
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  Designed &amp; built by <span>Caroline Tianeze de Castro</span> · 2026 · All rights reserved
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+  // --- GitHub Repos ---
+  async function loadGitHub() {
+    const grid = document.getElementById('ghGrid');
+    try {
+      const res = await fetch('https://api.github.com/users/carolinetianeze/repos?sort=updated&per_page=12');
+      const repos = await res.json();
+
+      if (!repos || repos.length === 0) {
+        grid.innerHTML = '<p class="gh-loading">No public repositories found yet.</p>';
+        return;
+      }
+
+      const filtered = repos.filter(r => !r.fork);
+      grid.innerHTML = filtered.map(r => `
+        <a class="gh-card" href="${r.html_url}" target="_blank">
+          <div class="gh-card-header">
+            <span class="gh-icon">📁</span>
+            <span class="gh-name">${r.name}</span>
+          </div>
+          <p class="gh-desc">${r.description || 'No description provided.'}</p>
+          <div class="gh-footer">
+            ${r.language ? `<span class="gh-lang">${r.language}</span>` : ''}
+            <span class="gh-stat">⭐ ${r.stargazers_count}</span>
+            <span class="gh-stat">🍴 ${r.forks_count}</span>
+          </div>
+        </a>
+      `).join('');
+    } catch(e) {
+      grid.innerHTML = `
+        <div class="gh-card" style="grid-column:1/-1; text-align:center; padding: 2rem;">
+          <p style="color:var(--muted); margin-bottom:1rem;">Could not load repositories automatically.</p>
+          <a href="https://github.com/carolinetianeze" target="_blank" class="btn btn-outline" style="display:inline-flex;">View on GitHub ↗</a>
+        </div>`;
+    }
+  }
+  loadGitHub();
+
+  // --- Publication Filter ---
+  const filters = document.querySelectorAll('.pub-filter');
+  const cards = document.querySelectorAll('.pub-card');
+  const search = document.getElementById('pubSearch');
+  const count = document.getElementById('pubCount');
+
+  let activeTopic = 'all';
+
+  function applyFilters() {
+    const query = search.value.toLowerCase().trim();
+    let visible = 0;
+
+    cards.forEach(card => {
+      const topic = card.dataset.topic || '';
+      const text = card.textContent.toLowerCase();
+      const matchesTopic = activeTopic === 'all' || topic.includes(activeTopic);
+      const matchesSearch = !query || text.includes(query);
+
+      if (matchesTopic && matchesSearch) {
+        card.classList.remove('hidden');
+        visible++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    count.textContent = `${visible} publication${visible !== 1 ? 's' : ''}`;
+  }
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filters.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeTopic = btn.dataset.topic;
+      applyFilters();
+    });
+  });
+
+  search.addEventListener('input', applyFilters);
+
+  // --- Intersection Observer for nav active state ---
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.style.color = link.getAttribute('href') === '#' + entry.target.id
+            ? 'var(--text)'
+            : '';
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
